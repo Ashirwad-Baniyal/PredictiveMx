@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Predictive Maintenance</title>
+    <link rel="stylesheet"  href="{{url_for('static',filename='styles.css')}}">
+</head>
+<body>
+    <header>
+    <div class="header-container">
+        <span class="logo">PredictiveMX Solutions</span>
+        <nav>
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Services</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+<div class="introduction">
+<p class="intro-paragraph">
+    <span class="quote"> &quot;</span>
+    Welcome to my Predictive Maintenance Demo Project! In this demonstration, I have provided a glimpse into the power of predictive analytics in the realm of maintenance management. This system takes a few key parameters as input, such as air temperature, process temperature, rotational speed, torque, and tool wear, and utilizes machine learning algorithms to predict the type of failure that may occur. While this demo showcases the potential of predictive maintenance, we acknowledge that the true strength lies in leveraging real-world data from sensors, equipment telemetry, and historical maintenance records. By integrating data from these sources, we can enhance the accuracy and reliability of our predictive models, allowing organizations to proactively identify and address potential equipment failures before they occur. Join us in revolutionizing maintenance practices and optimizing operational efficiency through the power of data-driven insights. 
+    <span class="quote"> &quot;</span>
+</p>
+</div>
+<section class="form-section">
+    <h1>Smart Maintenance Predictor</h1>
+    <form action="/predict" method="post">
+        <!-- Include input fields for dataset features -->
+        <label for="Air_temperature_K">Air temperature [K]:</label>
+        <input type="text" id="air_temp" name="Air_temperature_K"><br><br>
+        
+        <label for="Process_temperature_K">Process Temperature [K]:</label>
+        <input type="text" id="process_temp" name="Process_temperature_K"><br><br>
+
+        <label for="Rotational_speed_rpm">Rotational Speed [rpm]:</label>
+        <input type="text" id="rotational_speed" name="Rotational_speed_rpm"><br><br>
+
+        <label for="Torque_Nm">Torque [Nm]:</label>
+        <input type="text" id="torque" name="Torque_Nm"><br><br>
+
+        <label for="Tool_wear_min">Tool Wear [min]:</label>
+        <input type="text" id="tool_wear" name="Tool_wear_min"><br><br>
+        <input type="submit" value="Predict">
+     
+    </form>
+</section>
+    <!-- Display prediction result if available -->
+    {% if prediction is defined %}
+        <h2 style="color: aliceblue;">Prediction Result:</h2>
+        <p>
+            {% if prediction == 0 %}
+                No Failure
+            {% elif prediction == 1 %}
+                Heat Dissipation Failure
+            {% elif prediction == 2 %}
+                Power Failure
+            {% elif prediction == 3 %}
+                Overstrain Failure
+            {% elif prediction == 4 %}
+                Tool Wear Failure
+            {% elif prediction == 5 %}
+                Random Failures
+            {% else %}
+                Unknown
+            {% endif %}
+        </p>
+    {% endif %}
+
+    <footer>
+        <p>&copy; 2024 PredictiveMX Solutions. All rights reserved.</p>
+    </footer>
+</body>
+</html>
